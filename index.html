@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lanor Jephthah Kwame | Applied AI Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+    <header class="site-header glass">
+      <div class="container nav-wrap">
+        <a href="#" class="logo">LJK<span>.</span></a>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#lab">AI Lab</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero container reveal">
+        <p class="pill">Computer Engineering &middot; NLP &middot; Applied ML</p>
+        <h1>
+          Lanor Jephthah Kwame
+          <span>Engineering AI experiences that feel sharp, useful, and human.</span>
+        </h1>
+        <p class="intro">
+          I build practical ML systems from noisy real-world data, then ship interfaces
+          that make model behavior visible and actionable.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#lab">Try AI Text Lab</a>
+          <a class="btn ghost" href="#skills">View Stack</a>
+        </div>
+        <div class="stats-grid">
+          <article class="stat glass reveal">
+            <p class="stat-number" data-target="5">0</p>
+            <p class="stat-label">Core Domains</p>
+          </article>
+          <article class="stat glass reveal">
+            <p class="stat-number" data-target="120">0</p>
+            <p class="stat-label">Dataset Experiments</p>
+          </article>
+          <article class="stat glass reveal">
+            <p class="stat-number" data-target="12">0</p>
+            <p class="stat-label">Pipeline Prototypes</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="container section reveal">
+        <h2>About Me</h2>
+        <div class="grid two">
+          <article class="card glass tilt">
+            <h3>Builder Mindset</h3>
+            <p>
+              I approach AI like product engineering: diagnose the real bottleneck,
+              design measurable experiments, then optimize for reliability.
+            </p>
+          </article>
+          <article class="card glass tilt">
+            <h3>What I Optimize For</h3>
+            <p>
+              Signal over noise, transparent model behavior, and systems that teams can
+              actually maintain once they move from notebooks to production.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" class="container section reveal">
+        <h2>Skills & Technologies</h2>
+        <div class="skills-grid">
+          <article class="skill-card tilt"><h3>Languages</h3><p>Python, SQL</p></article>
+          <article class="skill-card tilt"><h3>ML Stack</h3><p>Scikit-learn, Pandas, NumPy, SpaCy</p></article>
+          <article class="skill-card tilt"><h3>NLP</h3><p>Tokenization, embeddings, text classification</p></article>
+          <article class="skill-card tilt"><h3>Visualization</h3><p>Matplotlib, Seaborn, Plotly</p></article>
+          <article class="skill-card tilt"><h3>Cloud</h3><p>AWS, GCP, Azure (active learning)</p></article>
+          <article class="skill-card tilt"><h3>Deployment</h3><p>Docker, API-first ML workflows</p></article>
+        </div>
+      </section>
+
+      <section id="lab" class="container section reveal">
+        <div class="lab glass">
+          <div class="lab-head">
+            <h2>AI Text Lab</h2>
+            <p>Drop any paragraph and get a fast, client-side intelligence pass.</p>
+          </div>
+          <div class="lab-grid">
+            <div class="lab-input">
+              <label for="input-text">Input text</label>
+              <textarea
+                id="input-text"
+                placeholder="Paste a message, article excerpt, or product review..."
+              ></textarea>
+              <div class="lab-actions">
+                <button id="sample-btn" class="btn ghost" type="button">Load Sample</button>
+                <button id="clear-btn" class="btn ghost" type="button">Clear</button>
+                <button id="analyze-btn" class="btn primary" type="button">Analyze Text</button>
+              </div>
+            </div>
+            <div class="lab-output" id="analysis-output">
+              <p class="mono">Awaiting input...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="container section reveal">
+        <h2>Let&apos;s Connect</h2>
+        <div class="contact glass">
+          <p>
+            Open to collaborations, open-source projects, and opportunities in NLP,
+            machine learning, and product-focused AI engineering.
+          </p>
+          <a class="btn primary" href="mailto:hello@example.com">Send a Message</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container footer">
+      <p>&copy; <span id="year"></span> Lanor Jephthah Kwame &middot; Built with intent.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
