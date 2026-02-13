@@ -13,7 +13,6 @@ Manual file cleanup gets messy fast. This toolchain gives you:
 
 ## Jarvis GUI Preview
 
-> Add your screenshot at `docs/images/jarvis-gui.png` to render below.
 
 ![Jarvis Local Assistant](docs/images/jarvis-gui.png)
 
