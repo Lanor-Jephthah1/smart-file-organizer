@@ -1,3 +1,6 @@
 __pycache__/
 *.py[cod]
 .venv/
+.venv312/
+.jarvis_history.log
+_organized_preview/

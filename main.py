@@ -18,7 +18,7 @@ import time
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, Iterable, Tuple
 
 
 EXTENSION_MAP = {
@@ -62,6 +62,7 @@ class Config:
     dry_run: bool
     recursive: bool
     keep_empty: bool
+    sort_mode: str
 
 
 def classify_file(path: Path) -> str:
@@ -75,6 +76,40 @@ def classify_file(path: Path) -> str:
 def month_bucket(path: Path) -> str:
     modified = datetime.fromtimestamp(path.stat().st_mtime)
     return modified.strftime("%Y-%m")
+
+
+def source_bucket(path: Path) -> str:
+    """Best-effort source/workflow classifier based on path and filename patterns."""
+    name = path.name.lower()
+    parent = str(path.parent).lower()
+    ext = path.suffix.lower()
+
+    if "whatsapp" in name or "whatsapp" in parent:
+        return "whatsapp"
+    if "telegram" in name or "telegram" in parent:
+        return "telegram"
+    if "discord" in name or "discord" in parent:
+        return "discord"
+    if "slack" in name or "slack" in parent:
+        return "slack"
+
+    if name.startswith("screenshot") or "screen shot" in name or name.startswith("snip"):
+        return "screenshots"
+    if name.startswith("img_") or name.startswith("dsc_") or name.startswith("pxl_"):
+        return "camera_exports"
+
+    if "chrome" in name or "edge" in name or "firefox" in name:
+        return "browser_downloads"
+    if ext in {".crdownload", ".part"}:
+        return "browser_partial_downloads"
+
+    if "zoom" in name or "meeting" in name or "teams" in name:
+        return "meetings"
+
+    if ext in {".torrent"}:
+        return "torrent"
+
+    return "manual_or_unknown"
 
 
 def sha256sum(path: Path, chunk_size: int = 1024 * 1024) -> str:
@@ -148,7 +183,10 @@ def move_file(src: Path, dst: Path, dry_run: bool) -> Path:
 
 def organize_file(path: Path, config: Config, index: Dict[str, str]) -> Tuple[str, str]:
     category = classify_file(path)
-    bucket = month_bucket(path)
+    if config.sort_mode == "source":
+        bucket = source_bucket(path)
+    else:
+        bucket = month_bucket(path)
     base_target = config.destination / category / bucket / path.name
 
     digest = sha256sum(path)
@@ -221,6 +259,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dry-run", action="store_true", help="Preview actions without moving files.")
     parser.add_argument("--non-recursive", action="store_true", help="Only process top-level files.")
     parser.add_argument("--keep-empty", action="store_true", help="Do not remove empty folders from source.")
+    parser.add_argument(
+        "--sort-mode",
+        choices=("date", "source"),
+        default="date",
+        help="Sort by month bucket ('date') or source/workflow bucket ('source').",
+    )
     return parser.parse_args()
 
 
@@ -232,6 +276,7 @@ def main() -> None:
         dry_run=args.dry_run,
         recursive=not args.non_recursive,
         keep_empty=args.keep_empty,
+        sort_mode=args.sort_mode,
     )
 
     if not config.source.exists() or not config.source.is_dir():
