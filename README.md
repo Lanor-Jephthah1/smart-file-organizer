@@ -20,8 +20,6 @@ Manual file cleanup gets messy fast. This toolchain gives you:
 
 ## Organizer Output Preview
 
-> Add your organizer screenshot at `docs/images/organizer-output.png` to render below.
-
 ![Smart File Organizer Output](docs/images/organizer-output.png)
 
 ## Core Features
