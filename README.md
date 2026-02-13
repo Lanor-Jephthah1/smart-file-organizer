@@ -3,6 +3,8 @@
 Local automation toolkit for Windows:
 - `main.py`: smart file organizer with duplicate detection
 - `jarvis.py`: desktop GUI assistant for running routines, opening folders, and summarizing logs
+- `nlp_triage.py`: triage text/doc files into urgency + action/deadline digests
+- `mail_triage.py`: triage real inbox emails via IMAP into daily digest reports
 
 ## Why This Project
 
@@ -15,6 +17,12 @@ Manual file cleanup gets messy fast. This toolchain gives you:
 
 
 ![Jarvis Local Assistant](docs/images/jarvis-gui.png)
+
+## Organizer Output Preview
+
+> Add your organizer screenshot at `docs/images/organizer-output.png` to render below.
+
+![Smart File Organizer Output](docs/images/organizer-output.png)
 
 ## Core Features
 
@@ -45,6 +53,8 @@ Manual file cleanup gets messy fast. This toolchain gives you:
 .
 |-- main.py
 |-- jarvis.py
+|-- nlp_triage.py
+|-- mail_triage.py
 |-- jarvis_config.json
 |-- README.md
 `-- docs/
@@ -101,6 +111,29 @@ One-shot command mode:
 python jarvis.py --once "list routines"
 python jarvis.py --once "organize_downloads_dry_run"
 python jarvis.py --once "summarize C:\path\to\app.log"
+```
+
+### 4. NLP Triage for Local Files
+
+```powershell
+python nlp_triage.py --input-dir "%USERPROFILE%\Documents" --output-dir "triage_reports" --recursive
+```
+
+### 5. Email Inbox Triage (IMAP)
+
+Use an app password, not your main account password.
+
+```powershell
+python mail_triage.py --host imap.gmail.com --user "you@example.com" --password "APP_PASSWORD" --unread-only --since-days 7
+```
+
+Or set environment variables:
+
+```powershell
+$env:IMAP_HOST="imap.gmail.com"
+$env:IMAP_USER="you@example.com"
+$env:IMAP_PASS="APP_PASSWORD"
+python mail_triage.py --unread-only --since-days 7
 ```
 
 ## Jarvis Commands
