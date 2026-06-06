@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "codex": ".",
+    "downloads": "~/Downloads",
+    "desktop": "~/Desktop",
+    "documents": "~/Documents",
+    "pictures": "~/Pictures",
+    "videos": "~/Videos",
+    "music": "~/Music"
+  },
+  "routines": {
+    "organize_downloads_dry_run": "python main.py --source \"%USERPROFILE%\\Downloads\" --destination \"%USERPROFILE%\\Downloads\\Organized\" --dry-run",
+    "organize_downloads": "python main.py --source \"%USERPROFILE%\\Downloads\" --destination \"%USERPROFILE%\\Downloads\\Organized\"",
+    "organize_desktop": "python main.py --source \"%USERPROFILE%\\Desktop\" --destination \"%USERPROFILE%\\Desktop\\Organized\""
+  }
+}

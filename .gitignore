@@ -1,0 +1,7 @@
+.venv/
+.idea/
+__pycache__/
+*.pyc
+*.log
+duplicates/
+.organizer_index.json
